@@ -14,14 +14,16 @@ import reload from '../../images/reload.png'
 export default function Home (){
 
     const dispatch = useDispatch()
+    //traifo los datos del estago global
     const allVideogames = useSelector(( state ) => state.videogames)
     const genres = useSelector ((state)=> state.genres)
+
     const [orden, setOrden] = useState('')
     ////Paginado
-    const [currentPage, setCurrentPage] = useState(1) //Pagina actual
-    const [videogamesPerPage, setVideogamePerPage] = useState(15)
-    const indexOfLastVideogame = currentPage * videogamesPerPage
-    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
+    const [currentPage, setCurrentPage] = useState(1) //Pagina actual, marcnado tambien el estado con el que va arrancar
+    const [videogamesPerPage, setVideogamePerPage] = useState(15)//la cantidad de juegos por pagina
+    const indexOfLastVideogame = currentPage * videogamesPerPage//la pag actual multiplicame la cantidad de juegos por pagina
+    const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage//setear el indice de mi primer juego en cad apag, ya que a medida q cambie la pag el primer juego cambia
     const currentVideogames = allVideogames.slice(indexOfFirstVideogame , indexOfLastVideogame)
 
     const paginado = (pageNumber) => {
@@ -29,7 +31,7 @@ export default function Home (){
     }
 
 
-
+// trae todos los juegos y generos
     useEffect (() =>{
         dispatch ( getVideogames());
     }, [dispatch]);
@@ -58,10 +60,12 @@ export default function Home (){
     }
 
     function handleGenres (e){
-        e.preventDefault();
+        // e.preventDefault();
+        // dispatch(filterByGenres(e.target.value));
+        // setCurrentPage(1);
+        // setOrden(e.target.value);
         dispatch(filterByGenres(e.target.value));
         setCurrentPage(1);
-        setOrden(e.target.value);
     }
 //despacha los videogames creados desde la bd o la api
     function handleFilterCreated (e){
@@ -105,7 +109,7 @@ export default function Home (){
 
                 {/* filtrado por género */}
                 <select onChange={e => handleGenres(e)}>
-                    <option value = 'All'>All Generos</option>
+                    <option value = 'All'>Todos los Generos</option>
                     { genres.map((e =>{
                         return (
                             <option key={e.id} value ={e.name}>
@@ -128,7 +132,7 @@ export default function Home (){
                                 <Card 
                                 key={el.id}
                                 name={el.name}
-                                background_image = {el.background_image ? el.background_image: el.background_image} 
+                                background_image = {el.background_image} 
                                 genres = {el.genres}
                                 rating = {el.rating}
                         />

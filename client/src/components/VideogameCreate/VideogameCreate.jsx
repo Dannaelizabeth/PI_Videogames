@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link,useHistory } from "react-router-dom";
-import { postVideogame, getGenres} from "../../actions";
+import { postVideogame, getGenres, getVideogames} from "../../actions";
 import {useDispatch, useSelector} from 'react-redux';
 import style from './VideogameCreate.module.css'
 
 export default function VideogameCreate (){
     const dispatch =useDispatch ()
     const history = useHistory()
-    const genres = useSelector ((state) => state.genres)
+    const genres = useSelector ((state) => state.genres);
+    const videogames = useSelector ((state) => state.videogames);
     console.log(genres)
 
     const arrayPlatformas = [
@@ -80,7 +81,28 @@ export default function VideogameCreate (){
     function handleSubmit (e) {
         e.preventDefault();
         console.log(input)
-        dispatch(postVideogame(input))
+        if (input.name.trim() === ""){
+            return alert ('Debe de ingresar nombre');
+        }else if (
+            videogames.find ( (e) => e.name.toLowerCase().trim() === input.name.toLowerCase().trim()
+            )
+        ){
+            return alert (`El nombre ${input.name} ya existe`)
+        } else if (input.description.trim() === ''){
+            return alert ('Necesita tener una descripcion el juego.');
+        }else if (input.released.trim() === ''){
+            return alert ('Ingrese una Fecha de lanzamiento')
+        }else if (input.released < '1960-12-03'){
+            return('La fecha tiene que ser mayor 03/12/1960 ')
+        } else if (
+            input.rating.trim() === '' || input.rating < 1 || input.rating > 10 ) {
+                return alert ('Ingrese un Puntanje de 1 al 10')
+        } else if (input.genres.length === 0) {
+            return alert("Selecione uno o más Generos");
+          } else if (input.platforms.length === 0) {
+            return alert("Selecione una o más Plataformas");
+          } else {
+         dispatch(postVideogame(input))
         alert ('Nuevo Juego Creado!!')
         setInput({
             name :'',
@@ -90,9 +112,9 @@ export default function VideogameCreate (){
             rating :'',
             genres: [],
             platforms:[],
-
         })
         history.push ('/home')
+          } 
     }
 
     function handleDeleteGenres(g){
@@ -195,7 +217,7 @@ export default function VideogameCreate (){
                         </li>
                     </ul>
                     {input.platforms.map(el=>
-                        <div className={style.delete}>
+                        <div key={el} className={style.delete}>
                         <p>{el}</p>
                         <button className={style.botonX} onClick={()=>handleDeletePlatforms(el)}>X</button>
                         </div>
@@ -219,7 +241,7 @@ export default function VideogameCreate (){
                     </ul>
 
                     {input.genres.map(el=>
-                        <div className={style.delete}>
+                        <div key ={el} className={style.delete}>
                         <p>{el}</p>
                         <button className={style.botonX} onClick={()=>handleDeleteGenres(el)}>X</button>
                         </div>

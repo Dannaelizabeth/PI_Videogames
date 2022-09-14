@@ -13,6 +13,7 @@ function rootReducer (state = initialState, action){
                 ...state,
                 videogames : action.payload,
                 allVideogames :action.payload
+
             }
             case 'GET_GENRES' :
                 return {
@@ -86,10 +87,11 @@ function rootReducer (state = initialState, action){
 
                 case 'FILTER_BY_GENRES':
                     const allVideogames2 =state.allVideogames;
-                    const genresFilter = action.payload === 'All' ? allVideogames2 : allVideogames2.filter ((e)=> e.genres.includes(action.payload));
+                    // const genresFilter = action.payload === 'All' ? allVideogames2 : allVideogames2.filter ((e)=> e.genres.includes(action.payload));
+                     const filterGenres = allVideogames2.filter((el)=> el.genres.includes(action.payload))
                     return{
                         ...state,
-                        videogames : genresFilter,
+                        videogames : action.payload === 'All' ? allVideogames2 : filterGenres
                     }
 
 

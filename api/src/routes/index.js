@@ -16,9 +16,10 @@ const router = Router();
 //Nos trae toda la informacion de la api
 const getApiInfo = async () =>{ 
 
-        const apiInfo = [];
+        const apiInfo = [];//para guardar los 20 videojuegos de cada pagina de la api
         let apiUrl =`https://api.rawg.io/api/games?key=${API_KEY}`;
 
+        //Necesito 5 paginas para un total de 100 videjuegos
         for (let i = 1; i < 6; i++){
             let pages = await axios.get(apiUrl);
             pages.data.results?.map(el =>{
@@ -121,7 +122,7 @@ router.get('/genres', async (req,res) => {
 router.post('/videogames', async (req,res) => {
     let {
         name,
-        background_image, 
+        background_image,
         description,
         released,
         genres,
@@ -133,7 +134,7 @@ router.post('/videogames', async (req,res) => {
 
     const videogameCreated = await Videogame.create ({
         name,
-        background_image,
+        background_image : background_image ? background_image:'https://fondosmil.com/fondo/49736.jpg',
         description,
         released,
         platforms,
