@@ -1,0 +1,108 @@
+.card {
+    position: relative;
+    min-height:18em;
+    width: 320px;
+    height: 414px;
+    padding: 20px;
+    margin: 10px;
+    background: linear-gradient(-90deg, rgb(12, 12, 12), white);
+    text-decoration: none;
+    border-radius: 0.75em;
+    box-shadow: 3px 5px 5px rgb(219, 0, 0);
+    overflow: hidden;
+    display: inline-block;
+    box-sizing: content-box;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+.card:hover{
+  transform: translateY(-10px);
+} 
+
+.name{
+  /* grid-column: x0 / x1;
+  grid-row: y0/y1; */
+  font-family:"Staatliches", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: rgb(201, 30, 30);
+  padding-left: 2%;
+  padding-top: 18%;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+
+.img {
+  display:block;
+  margin:auto;
+  /* grid-column: x0 / x2;
+  grid-row: y1/y2; */
+  max-width: 320px;
+  border-radius: 0.8rem;
+}  
+
+.rating{
+  color: rgb(201, 30, 30);
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  line-height: 1rem;
+}
+.rand{
+  color: rgb(255, 255, 0);
+  font-size: 1.2rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 1rem;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  border-radius: 1rem;
+}
+.rand:hover {
+  transform: translateY(-10px);
+
+}
+.puntaje{
+  color: rgb(255, 4, 4);
+  font-size: 0.8rem;
+  /* margin-left: 30%;
+  margin-right: 30%;
+  line-height: 5rem; */
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+  padding: 20px;
+  margin: 20px;
+}
+
+.generoTitle{
+  color: rgb(201, 30, 30);
+  font-family: "Red Hat Display", sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  line-height: 3rem;
+}
+.generos{
+  /* font-size: 12px;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  margin-left: 8%; */
+
+  color: hsl(0, 0%, 100%);
+  font-size: 0.9rem;
+  line-height: 1.1rem;
+  align-items: center;
+  font-weight:600;
+  min-width: 10px;
+  /* margin-left: 30%; */
+  margin-right: 50%;
+  font-family: "Red Hat Display", sans-serif;
+  text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+.imggen{
+  margin-left:30%;
+}

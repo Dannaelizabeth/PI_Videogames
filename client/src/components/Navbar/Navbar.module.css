@@ -1,0 +1,49 @@
+.navbar{
+    overflow: hidden;
+    height: 9vh;
+    background: linear-gradient(-90deg, rgb(12, 12, 12), white);
+    /* background-color:  */
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.LogoGamer{
+    cursor: pointer;
+    width: 90px;
+    float: left;
+    margin-left: 10px;
+    /* transform:  translate(0px,-5px); */
+}
+
+.create{
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    /* transform:  translateY(20px); */
+
+    padding: 16px 32px;
+    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    line-height: 1;
+    border-radius: 8px;
+
+    background-image: linear-gradient(45deg, #c92323 10%, #791313 90%);
+    background-position: 90% 0;
+    background-size:200% 200%;
+    box-shadow: 0 2px 8px -1px #09113f;
+    transition: all 0.5s ease;
+}
+
+.create:hover {
+    box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+    background-position: 0 0;
+    transform: translateY(10px);
+}
